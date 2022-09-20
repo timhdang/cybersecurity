@@ -8,7 +8,7 @@ import wget
 import tarfile
 from os.path import exists
 import time
-import scannerX
+import scanner
 import requests
 import shutil
 
