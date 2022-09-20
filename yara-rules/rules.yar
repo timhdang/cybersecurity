@@ -147,7 +147,7 @@ rule SUSP_obfuscated_JS_obfuscatorio
         )
 }
 
-rule shell_npm_recon:npm recon shell
+rule shell_npm_recon_2:npm recon shell_2
 {  
    strings:
       $a="postinstall" nocase ascii
@@ -163,7 +163,7 @@ rule shell_npm_recon:npm recon shell
       $l="rm" nocase ascii
       $m="mkfifo" nocase ascii  
    condition:
-      any of them
+      3 of them
 }
 
 rule BeepService_Hacktool 
@@ -187,4 +187,46 @@ rule BeepService_Hacktool
 		$s3 = "192.168.88.69" fullword ascii
 	condition:
 		uint16(0) == 0x5a4d and filesize < 100KB and $x1 and 1 of ($s*)
+}
+
+rule pynput_keyboard_keylogger 
+{
+    meta:
+		description = "Detects NodeRAT."
+        author = "Tim Dang"
+        date = "2022-09-19"
+    strings: 
+        $s1 = "pynput.keyboard"
+        $s2 = "pynput"
+        $s3 = "connected"
+        $s4 = "disconnected"
+        $s5 = "listening"
+        $s6 = "controllerServerURL"
+        $s7 = "heroku"
+        $s8 = "Heroku"
+        $s9 = "socket.io"
+        $s10 = "emit"
+    condition:
+        4 of them
+}
+rule python_botnet 
+{
+    meta:
+		description = "Detects PythonBot DDOS RAT Bot."
+        author = "Tim Dang"
+        date = "2022-09-19"
+    strings: 
+        $s1 = "SIGINT"
+        $s2 = "SIGTERM"
+        $s3 = "SOCK_STREAM"
+        $s4 = "AF_INET"
+        $s5 = "SOCK_DGRAM"
+        $s6 = "recv(1024)"
+        $s7 = "ctypes.windll.kernel32"
+        $s8 = "attack"
+        $s9 = "kill"
+        $s10 = "ping"
+        $s11 = "BrokenPipeError"
+    condition:
+        4 of them
 }
