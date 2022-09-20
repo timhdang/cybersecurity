@@ -71,6 +71,10 @@ for l in range (len(LIST_OF_DIRECTORIES)):
         match = rule.match(list_of_all_files[i])
         if (len(match) >= 1):
             #print(type(match))
+            with open('db.txt', 'a') as f:
+                f.write('Infected files: ' + list_of_all_files[i])
+                f.write('\n')
+                f.close()
             print(colored(('Title: ' + list_of_all_files[i]),'green'))
             print(colored('Rules matched on:[', 'yellow'), end = "")
             #print(len(match["main"]))
@@ -80,6 +84,12 @@ for l in range (len(LIST_OF_DIRECTORIES)):
             print((colored(('Malicious file paths:['), 'red')), end = "")
             print(colored(list_of_all_files[i],'red') , end="]")
             print("\n-------------------")
+            with open('db.txt', 'a') as f:
+                f.write('Infected rules:')
+                for m in range (len(match["main"])):
+                    f.write(str(match["main"][m]["rule"]))
+                f.write('\n--------------\n')
+                f.close()
         '''
         else:
             #print('no match')
