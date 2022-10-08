@@ -3,5 +3,6 @@
     "api-key" : "change-me",
     "email_to" : "change-me",
     "email_from" : "change-me",
-    "alias" : "change-me"
+    "alias" : "change-me",
+    "api-key-libraries-io" : "change-me"
 }
