@@ -1,4 +1,4 @@
-# Experimental Learning: TrendMicro and WGU
+# Experimental Learning: WGU
 ![image](https://user-images.githubusercontent.com/71614530/194676680-de3c7a29-8c68-4114-99e0-08cac2431232.png)
 
 
